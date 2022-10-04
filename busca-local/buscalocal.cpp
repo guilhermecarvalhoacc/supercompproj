@@ -56,39 +56,29 @@ int main(){
     unsigned seed = 10;
 
     shuffle (cidades.begin(), cidades.end(), default_random_engine(seed));
-    // cout << "Vetor de cidades aleatorio:";
-    // int len_caminho = cidades.size();
-    // for (int i = 0; i < len_caminho; i++){
-    //     cout << cidades[i].id << " ";
-    // }
-    // cout << "" << endl;
     
-
 
     vector<Cidade> vetor_solucao = cidades;
     double distancia_total = 1000000;
     vector<Cidade> vetor_final = cidades;
+    double nova_distancia;
     for (int i = 0; i < 10*N; i++){
 
-        int j = 0;
-        while (j < cidades.size() - 1){
-            double nova_distancia = calcula_distancia(vetor_solucao);
+        for (int j = 0; j < cidades.size() - 1; j++){
+            nova_distancia = calcula_distancia(vetor_solucao);
             if(nova_distancia < distancia_total){
                 distancia_total = nova_distancia;
-                vetor_final = vetor_solucao;
-
-            }
-            else{
-                swap(vetor_solucao[j], vetor_solucao[j + 1]);
-            }
-            ++j;
+                vetor_final = vetor_solucao; 
+            }  
+            swap(vetor_solucao[j], vetor_solucao[j + 1]);
         }
         cerr << "local: " << distancia_total << " ";
         int len_final2 = vetor_final.size();
         for (int i = 0; i < len_final2; i++){
             cerr<< vetor_final[i].id << " ";
         }
-        cerr << "" << std::endl;
+        cerr << std::endl;
+
 
     }
     cout << distancia_total << " 0" << std::endl;
