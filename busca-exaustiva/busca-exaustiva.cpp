@@ -5,30 +5,28 @@
 #include<math.h>
 #include <random>       
 #include <chrono>   
-
-
 using namespace std;
 
 struct Cidade
 {
     int id;
-    double x, y;
+    float x, y;
 };
  
-double distancia(Cidade cA, Cidade cB)
+float distancia(Cidade cA, Cidade cB)
 {
-    double distanciaX = pow(cA.x - cB.x, 2);
-    double distanciaY = pow(cA.y - cB.y, 2);
-    double distancia = sqrt(distanciaX + distanciaY);
+    float distanciaX = pow(cA.x - cB.x, 2);
+    float distanciaY = pow(cA.y - cB.y, 2);
+    float distancia = sqrt(distanciaX + distanciaY);
     return distancia;
 }
 
 
-double calcula_distancia(vector<Cidade> cidades)
+float calcula_distancia(vector<Cidade> cidades)
 {   
-    double total;
+    float total;
     for (int i = 0; i < cidades.size(); i++){
-        double dist;
+        float dist;
         if (i < cidades.size()-1)
             dist = distancia(cidades[i],cidades[i+1]);
         else
@@ -42,8 +40,8 @@ double calcula_distancia(vector<Cidade> cidades)
 
 int main(){
     int N;
-    double x1;
-    double y1;
+    float x1;
+    float y1;
     cin >> N;
     vector<Cidade> cidades;
     vector<int> cidades_idxs;
@@ -58,8 +56,9 @@ int main(){
         cidades_idxs.push_back(c.id);
     }
     vector<Cidade> vetor_caminho= cidades;
-    double distancia_resultado = INFINITY;
+    float distancia_resultado = INFINITY;
     vector<Cidade> vetor_final;
+    int num_leaf = 0;
     while(next_permutation(cidades_idxs.begin(), cidades_idxs.end())){
         for (int i = 0; i < cidades_idxs.size(); i++)
         {
@@ -67,22 +66,23 @@ int main(){
             
         }
 
-        double nova_distancia = calcula_distancia(vetor_caminho);
+        float nova_distancia = calcula_distancia(vetor_caminho);
         if (nova_distancia < distancia_resultado){
             distancia_resultado = nova_distancia;
             vetor_final = vetor_caminho;
+            ++num_leaf;
             
         }
 
     }
-    
-    cout << distancia_resultado << " 1" << std::endl;
+    cerr << "num_leaf " << num_leaf << endl;
+    cout << distancia_resultado << " " << 1 << endl;
     int len_final = vetor_final.size();
     for (int i = 0; i < len_final; i++){
-        std::cout << vetor_final[i].id<< " ";
+        cout << vetor_final[i].id<< " ";
     }
-    cout << "" << std::endl;
-    cout << "\n";
+    cout << endl;
+    
 
     return 0;
 }
