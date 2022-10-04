@@ -19,3 +19,8 @@ Sua implementação da busca local deverá satisfazer os requisitos apresentados
 Crie um arquivo .cpp na pasta /busca-local e implemente o seu algoritmo.
 
 $> python3 corretor.py local
+
+
+# Referencias: https://cplusplus.com/reference/algorithm/next_permutation/
+https://stackoverflow.com/questions/30946137/recursive-permutations-using-vector
+http://albertocn.sytes.net/2010-1/pi/aulas/linguagem_c_vetores_ordenacao.htm
