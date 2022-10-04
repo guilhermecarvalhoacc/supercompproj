@@ -59,6 +59,7 @@ int main(){
     }
     vector<Cidade> vetor_caminho= cidades;
     double distancia_resultado = INFINITY;
+    vector<Cidade> vetor_final;
     while(next_permutation(cidades_idxs.begin(), cidades_idxs.end())){
         for (int i = 0; i < cidades_idxs.size(); i++)
         {
@@ -69,15 +70,16 @@ int main(){
         double nova_distancia = calcula_distancia(vetor_caminho);
         if (nova_distancia < distancia_resultado){
             distancia_resultado = nova_distancia;
+            vetor_final = vetor_caminho;
             
         }
 
     }
     
     cout << distancia_resultado << " 1" << std::endl;
-    int len_final = vetor_caminho.size();
+    int len_final = vetor_final.size();
     for (int i = 0; i < len_final; i++){
-        std::cout << vetor_caminho[i].id<< " ";
+        std::cout << vetor_final[i].id<< " ";
     }
     cout << "" << std::endl;
     cout << "\n";
